@@ -1,0 +1,32 @@
+# Escalation Notifier - REST Client Test Cases
+# 
+# This file is a testing template for the [Arcova Engage] Engagement - Escalation 
+# Notifier Power Automate flow. To use:
+#   1. Replace <YOUR_FLOW_URL_HERE> with the HTTP POST URL from the flow's trigger card
+#   2. Replace <TEST_ENGAGEMENT_GUID_HERE> with a valid Engagement GUID from Dataverse
+#   3. Click "Send Request" above each POST block to execute
+#
+# Requires VS Code REST Client extension (Huachao Mao).
+#
+# WARNING: The flow URL contains an authentication signature - treat as a secret.
+#          Do not commit a version of this file with the real URL populated.
+
+### Escalation Notifier Test - Happy Path
+
+POST <YOUR_FLOW_URL_HERE>
+Content-Type: application/json
+
+{
+  "engagementId": "<TEST_ENGAGEMENT_GUID_HERE>",
+  "escalationReason": "Client has requested immediate senior agent involvement due to a compliance audit deadline pulled forward by three weeks. The current agent's bandwidth cannot accommodate the compressed timeline."
+}
+
+
+### Escalation Notifier Test - Missing engagementId (defensive validation)
+
+POST <YOUR_FLOW_URL_HERE>
+Content-Type: application/json
+
+{
+  "escalationReason": "This request is missing engagementId and should return 400"
+}
